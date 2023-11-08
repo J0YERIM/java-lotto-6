@@ -12,12 +12,17 @@ public class InputView {
     private static final int LOTTO_TICKET_PRICE = 1000;
 
     public static int inputPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = readLine();
-        validateNotEmpty(input);
-        int purchaseAmount = parseToInteger(input);
-        validatePurchaseAmount(purchaseAmount);
-        return purchaseAmount;
+        try {
+            System.out.println("구입금액을 입력해 주세요.");
+            String input = readLine();
+            validateNotEmpty(input);
+            int purchaseAmount = parseToInteger(input);
+            validatePurchaseAmount(purchaseAmount);
+            return purchaseAmount;
+        } catch (LottoValidationException e) {
+            System.out.println(e.getMessage());
+            return -1;
+        }
     }
 
     public static List<Integer> inputWinningNumbers() {
